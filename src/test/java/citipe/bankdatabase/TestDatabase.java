@@ -1,11 +1,7 @@
 package citipe.bankdatabase;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import citipe.bankdatabase.UserDetails;
 
 public class TestDatabase {
 

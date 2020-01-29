@@ -7,9 +7,6 @@ import java.sql.Types;
 
 import citipe.Connect;
 import citipe.DAO.LoginCredentialsDAO;
-import citipe.DAO.TransactionDAO;
-import citipe.bankdatabase.TestDatabase;
-import citipe.transactiondetails.ImplementTransactionDetails;
 
 public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 

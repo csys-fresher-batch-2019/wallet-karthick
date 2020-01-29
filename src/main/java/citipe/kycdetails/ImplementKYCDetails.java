@@ -8,7 +8,6 @@ import java.sql.Types;
 
 import citipe.Connect;
 import citipe.DAO.kycDetailsDAO;
-import citipe.bankdatabase.TestDatabase;
 
 public class ImplementKYCDetails implements kycDetailsDAO {
 

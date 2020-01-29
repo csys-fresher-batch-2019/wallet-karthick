@@ -3,7 +3,6 @@ package citipe.servicelayer;
 import citipe.DAO.LoginCredentialsDAO;
 import citipe.DAO.TransactionDAO;
 import citipe.logincredentials.ImplementLoginCredentials;
-import citipe.logincredentials.UserLogin;
 import citipe.transactiondetails.ImplementTransactionDetails;
 
 public class UserService {

@@ -1,7 +1,5 @@
 package citipe.bankdatabase;
 
-import citipe.transactiondetails.*;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -9,9 +7,9 @@ import java.util.Scanner;
 import citipe.DAO.DAOFactory;
 import citipe.DAO.LoginCredentialsDAO;
 import citipe.DAO.TransactionDAO;
-import citipe.bankdatabase.UserDetails;
 import citipe.kycdetails.ImplementKYCDetails;
 import citipe.logincredentials.ImplementLoginCredentials;
+import citipe.transactiondetails.TransactionDetails;
 
 public class TestLoginCredentials {
 
