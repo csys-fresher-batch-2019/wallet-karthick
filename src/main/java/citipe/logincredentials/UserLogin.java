@@ -18,7 +18,7 @@ public class UserLogin {
 		return "UserLogin [mobileNumber=" + mobileNumber + ", pinNumber=" + getPinNumber() + "]";
 	}
 	
-	public UserLogin(long mobileNumber, int pinNumber) {
+	public UserLogin() {
 		super();
 		this.mobileNumber = mobileNumber;
 		this.setPinNumber(pinNumber);

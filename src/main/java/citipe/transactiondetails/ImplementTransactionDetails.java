@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import citipe.Connect;
 import citipe.DAO.TransactionDAO;
 import citipe.bankdatabase.TestDatabase;
 import citipe.bankdatabase.UserDetails;
@@ -17,7 +18,7 @@ public class ImplementTransactionDetails implements TransactionDAO {
 
 	public String balanceCheck(long mobileNumber, int pinNumber) throws Exception {
 		
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		ImplementTransactionDetails obj=new ImplementTransactionDetails();
 		int pin=obj.pinCheck(mobileNumber,pinNumber);
 		String result="";
@@ -41,7 +42,7 @@ public class ImplementTransactionDetails implements TransactionDAO {
 	
 	public String toDoTransaction(long senderMobileNo, long receiverMobileNo, float transferAmount, int pinNumber) throws Exception {
 
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		CallableStatement cStmt = conn.prepareCall("{call transaction_proc(?,?,?,?,?)}");
 		cStmt.setLong(1,senderMobileNo);
 		cStmt.setLong(2,receiverMobileNo);
@@ -56,7 +57,7 @@ public class ImplementTransactionDetails implements TransactionDAO {
 
 	public ArrayList<TransactionDetails> transactionHistoryByCategory(long mobileNumber, String category) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String transactionHistory="select * from transaction_table where categories=? ";
 		PreparedStatement stmt=conn.prepareStatement(transactionHistory);
 		stmt.setString(1, category);
@@ -77,7 +78,7 @@ public class ImplementTransactionDetails implements TransactionDAO {
 
 	public int pinCheck(long mobileNumber,int pinNumber) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String passwordSql="select upi_passwd from login where mobile_no=?";
 		PreparedStatement stmt=conn.prepareStatement(passwordSql);
 		stmt.setLong(1,mobileNumber);
@@ -98,7 +99,7 @@ public class ImplementTransactionDetails implements TransactionDAO {
 	public String pinUpdate(long mobileNumber,int pinNumber) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String sql = "update login set upi_passwd=? where mobile_no=?";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setInt(1,pinNumber);
@@ -118,7 +119,7 @@ public class ImplementTransactionDetails implements TransactionDAO {
 
 	public String walletTransaction(long senderMobileNo, long receiverMobileNo, float transferAmount) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		CallableStatement cStmt = conn.prepareCall("{call wallet_proc(?,?,?,?)}");
 		cStmt.setLong(1,senderMobileNo);
 		cStmt.setLong(2,receiverMobileNo);
@@ -130,6 +131,8 @@ public class ImplementTransactionDetails implements TransactionDAO {
 		return result;
 		
 	}
+	
+	
 	
 	
 

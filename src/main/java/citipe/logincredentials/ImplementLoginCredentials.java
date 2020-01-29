@@ -5,23 +5,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 
+import citipe.Connect;
 import citipe.DAO.LoginCredentialsDAO;
+import citipe.DAO.TransactionDAO;
 import citipe.bankdatabase.TestDatabase;
+import citipe.transactiondetails.ImplementTransactionDetails;
 
 public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 
 	public String login(long mobileNumber,int pinNumber) throws Exception{
 		// TODO Auto-generated method stub
-			Connection conn = TestDatabase.connect();
+			Connection conn = Connect.connect();
 
 			CallableStatement cStmt = conn.prepareCall("{call login_procedure(?,?,?)}");
-		   
+			
 		    cStmt.setLong(1,mobileNumber);
 		    cStmt.setInt(2,pinNumber);
 		    cStmt.registerOutParameter(3, Types.VARCHAR);
 		    cStmt.executeUpdate();
 		    String result = cStmt.getString(3);
 		    conn.close();
+		    //System.out.println(result);
 		return result;
 	}
 	
@@ -49,7 +53,7 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 	public String pinUpdate(long mobileNumber,int pinNumber) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String sql = "update login set upi_passwd=? where mobile_no=?";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setInt(1,pinNumber);
@@ -69,7 +73,7 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 
 	public String forgetPassword(long mobileNumber, String userName, long accountNumber) throws Exception{
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String sql="select user_name,account_no from account_details where mobile_no=?";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setLong(1,mobileNumber);
@@ -90,7 +94,7 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 
 	public int mobVerification(long mobileNumber) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		CallableStatement Stmt = conn.prepareCall("{call mob_chk_proc(?,?)}");
 	    Stmt.setLong(1,mobileNumber);
 	    Stmt.registerOutParameter(2, Types.INTEGER);
@@ -99,10 +103,11 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 	    conn.close();
 		return result;
 	}
-
-	public void login1(UserLogin user) throws Exception {
+	
+	
+	public  boolean validate(UserLogin user) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 
 		CallableStatement cStmt = conn.prepareCall("{call login_procedure(?,?,?)}");
 	   
@@ -111,13 +116,15 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 	    cStmt.registerOutParameter(3, Types.VARCHAR);
 	    cStmt.executeUpdate();
 	    String result = cStmt.getString(3);
+	    boolean results=false;
 	    conn.close();
-	    if(result.equals("Account logged-in") || result.equals("Account created")) {
-	    	
+	    if(result.equals("Account logged-in")) {
+	    	results=true;
 	    }
 	    else {
-	    	throw new Exception(result);
+	    	results=false;
 	    }
+		return results;
 	}
 	
 	

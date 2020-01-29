@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 
+import citipe.Connect;
 import citipe.DAO.kycDetailsDAO;
 import citipe.bankdatabase.TestDatabase;
 
@@ -13,7 +14,7 @@ public class ImplementKYCDetails implements kycDetailsDAO {
 
 	public int walletBalanceCheck(long mobileNumber) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String existingWalletSql="select kyc_wallet from kyc where mobile_no=?";
 		PreparedStatement stmt1=conn.prepareStatement(existingWalletSql);
 		stmt1.setLong(1, mobileNumber);
@@ -29,7 +30,7 @@ public class ImplementKYCDetails implements kycDetailsDAO {
 	public String addingKyc(long mobileNumber, String aadharNumber, String passportNumber, String drivingLicenseNo,
 			String userName) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		CallableStatement cStmt = conn.prepareCall("{call kyc_proc(?,?,?,?,?,?)}");
 	    cStmt.setLong(1,mobileNumber);
 	    cStmt.setString(2,aadharNumber);
@@ -46,7 +47,7 @@ public class ImplementKYCDetails implements kycDetailsDAO {
 
 	public String addingCashback(long mobileNumber, int cashback) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		CallableStatement Stmt = conn.prepareCall("{call Kyc_Status_Chk_Proc(?,?)}");
 	    Stmt.setLong(1,mobileNumber);
 	    Stmt.registerOutParameter(2, Types.INTEGER);	

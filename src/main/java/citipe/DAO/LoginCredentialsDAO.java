@@ -12,5 +12,5 @@ public interface LoginCredentialsDAO {
 	
 	public int mobVerification(long mobileNumber) throws Exception;
 
-	public void login1(UserLogin user) throws Exception ;
+	public boolean validate(UserLogin user) throws Exception ;
 }

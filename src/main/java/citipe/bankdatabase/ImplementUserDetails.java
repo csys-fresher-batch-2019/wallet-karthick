@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import citipe.Connect;
 import citipe.DAO.*;
 
 public class ImplementUserDetails implements UserDetailsDAO{
@@ -12,7 +14,7 @@ public class ImplementUserDetails implements UserDetailsDAO{
 
 	public void databaseEntry(UserDetails user) throws Exception {
 		
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String sql= "insert into account_details(user_name,mobile_no,email_id,account_no,balance,account_status)values (?,?,?,?,?,?)";
 		PreparedStatement pst=conn.prepareStatement(sql);
 		pst.setString(1,user.getUserName());
@@ -30,7 +32,7 @@ public class ImplementUserDetails implements UserDetailsDAO{
 
 	public ArrayList<UserDetails> activeUsers(String status) throws Exception {
 		// TODO Auto-generated method stub
-		Connection conn = TestDatabase.connect();
+		Connection conn = Connect.connect();
 		String sql="select user_name,mobile_no,account_no from account_details where account_status=?";
 		PreparedStatement stmt=conn.prepareStatement(sql);
 		stmt.setString(1,status);
