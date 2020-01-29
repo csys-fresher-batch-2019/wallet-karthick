@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 import citipe.Connect;
 import citipe.DAO.TransactionDAO;
-import citipe.bankdatabase.TestDatabase;
-import citipe.bankdatabase.UserDetails;
 
 public class ImplementTransactionDetails implements TransactionDAO {
 
