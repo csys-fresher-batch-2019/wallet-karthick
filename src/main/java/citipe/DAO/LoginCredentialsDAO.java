@@ -1,5 +1,7 @@
 package citipe.DAO;
 
+import citipe.logincredentials.UserLogin;
+
 public interface LoginCredentialsDAO {
 	
 	public String login(long mobileNumber,int pinNumber) throws Exception;
@@ -10,5 +12,5 @@ public interface LoginCredentialsDAO {
 	
 	public int mobVerification(long mobileNumber) throws Exception;
 
-
+	public void login1(UserLogin user) throws Exception ;
 }

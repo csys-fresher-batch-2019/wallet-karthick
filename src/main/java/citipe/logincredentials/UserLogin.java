@@ -15,12 +15,20 @@ public class UserLogin {
 	
 	@Override
 	public String toString() {
-		return "UserLogin [mobileNumber=" + mobileNumber + ", pinNumber=" + pinNumber + "]";
+		return "UserLogin [mobileNumber=" + mobileNumber + ", pinNumber=" + getPinNumber() + "]";
 	}
 	
 	public UserLogin(long mobileNumber, int pinNumber) {
 		super();
 		this.mobileNumber = mobileNumber;
+		this.setPinNumber(pinNumber);
+	}
+
+	public int getPinNumber() {
+		return pinNumber;
+	}
+
+	public void setPinNumber(int pinNumber) {
 		this.pinNumber = pinNumber;
 	}
 

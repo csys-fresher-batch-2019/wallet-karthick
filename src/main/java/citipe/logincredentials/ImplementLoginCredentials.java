@@ -24,6 +24,27 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 		    conn.close();
 		return result;
 	}
+	
+	/*public String login1(UserLogin user ) throws Exception {
+		Connection conn = TestDatabase.connect();
+
+		CallableStatement cStmt = conn.prepareCall("{call login_procedure(?,?,?)}");
+	   
+	    cStmt.setLong(1,user.getMobileNumber());
+	    cStmt.setInt(2,user.getPinNumber());
+	    cStmt.registerOutParameter(3, Types.VARCHAR);
+	    cStmt.executeUpdate();
+	    String result = cStmt.getString(3);
+	    conn.close();
+	    if(result.equals("Account logged-in") || result.equals("Account created")) {
+	    	
+	    }
+	    else {
+	    	throw new Exception(result);
+	    }
+		return result;
+		
+	}*/
 
 	public String pinUpdate(long mobileNumber,int pinNumber) throws Exception {
 		// TODO Auto-generated method stub
@@ -77,6 +98,26 @@ public class ImplementLoginCredentials implements  LoginCredentialsDAO{
 	    int result=Stmt.getInt(2);
 	    conn.close();
 		return result;
+	}
+
+	public void login1(UserLogin user) throws Exception {
+		// TODO Auto-generated method stub
+		Connection conn = TestDatabase.connect();
+
+		CallableStatement cStmt = conn.prepareCall("{call login_procedure(?,?,?)}");
+	   
+	    cStmt.setLong(1,user.getMobileNumber());
+	    cStmt.setInt(2,user.getPinNumber());
+	    cStmt.registerOutParameter(3, Types.VARCHAR);
+	    cStmt.executeUpdate();
+	    String result = cStmt.getString(3);
+	    conn.close();
+	    if(result.equals("Account logged-in") || result.equals("Account created")) {
+	    	
+	    }
+	    else {
+	    	throw new Exception(result);
+	    }
 	}
 	
 	

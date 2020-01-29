@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import citipe.DAO.DAOFactory;
+import citipe.DAO.LoginCredentialsDAO;
 import citipe.DAO.TransactionDAO;
 import citipe.bankdatabase.UserDetails;
 import citipe.kycdetails.ImplementKYCDetails;
@@ -21,7 +22,7 @@ public class TestLoginCredentials {
 	}
 
 	public static void loginCheck() throws Exception {
-		ImplementLoginCredentials obj1 = new ImplementLoginCredentials();
+		LoginCredentialsDAO obj1 = new ImplementLoginCredentials();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("CITIPAY");
 		System.out.println("Type 1 for Login \n     2 for Create a New Account \n     3 for Forgot Password");

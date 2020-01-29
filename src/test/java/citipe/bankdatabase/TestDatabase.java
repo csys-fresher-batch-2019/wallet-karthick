@@ -33,7 +33,9 @@ public class TestDatabase {
 	public static Connection connect() throws Exception
 	{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "oracle");
+		//String server  ="localhost";
+		String server = "CSLH2018";
+		Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@"+ server +":1521:XE", "system", "oracle");
 		//System.out.println(connection);
 		return connection;
 	}
