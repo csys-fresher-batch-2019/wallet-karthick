@@ -5,10 +5,9 @@
 <dependency>
 			<groupId>com.karthi</groupId>
 			<artifactId>citipe</artifactId>
-			<version>0.0.1-snapshot</version>
+			<version>1.0.0</version>
 		</dependency>
 ```
-
 #### Add Client
 
 ```
