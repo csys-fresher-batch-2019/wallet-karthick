@@ -8,26 +8,22 @@
 			<version>1.0.0</version>
 		</dependency>
 ```
-#### Add Client
-
+#### Create a Class
 ```
-import citipe.servicelayer.UserService;
-
-public class TestWallet {
-
-	public static void main(String[] args) {
-
+public class WalletAPI {
+	private static final Long COMPANY_MOBILE_NO = 6789012340L; //use your registered wallet mobileno
+	public static boolean pay(Long mobileNo , int pin, int amount) {
 		UserService userService = new UserService();
-		long mobileNumber = 9999999999L;
-		long originator = 6789012340L;
-		int pinNumber = 1234;
-		float amount = 1000;
+		boolean status ;
 		try {
-			boolean status = userService.walletTransaction(mobileNumber, originator, pinNumber, amount);
+			status = userService.walletTransfer(mobileNo, COMPANY_MOBILE_NO, pin, amount);
 			System.out.println(status);
 		} catch (Exception e) {
 			e.printStackTrace();
+			status = false;
 		}
+        return status;
 	}
+}
+```
 
-}```
