@@ -5,13 +5,11 @@ import citipe.servicelayer.UserService;
 public class TestWalletTransaction {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		UserService obj=new UserService();
 		try {
-			obj.walletTransaction(6789012347L,6789012340L,1000,(float)100);
-			
+			boolean result=obj.walletTransfer(9999999999L,6789012340L,1234,(float)1000);
+			System.out.println(result);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -7,34 +7,25 @@ import citipe.transactiondetails.ImplementTransactionDetails;
 
 public class UserService {
 	
-	public boolean walletTransaction(long mobileNumber,long originator,int pinNumber,float amount) throws Exception {
+	public boolean walletTransfer(long mobileNumber,long originator,int pinNumber,float amount) throws Exception {
 		
 	LoginCredentialsDAO userDAO = new ImplementLoginCredentials();
 	String result=userDAO.login(mobileNumber,pinNumber);
-	System.out.println(result);
+	String result1="";
+	boolean result2=false;
 	if(result.equals("Account logged-in") || result.equals("Account created")) {
     	TransactionDAO obj=new ImplementTransactionDetails();
-    	obj.walletTransaction(mobileNumber, originator, amount);
-    	//obj.walletTransaction(mobileNumber, transferAmount)
+    	result1=obj.walletTransaction(mobileNumber, originator, amount);
+    	if(result1.equals("Transaction Successfull")) {
+    		result2=true;
+    	}
+    	else {
+    		result2=false;
+    	}
     	}
     else {
     	throw new Exception(result);
     }
-	/*if(result==1) {
-		String a=userDAO.login(mobileNumber, pinNumber);
-		System.out.println(a);
-	}
-	UserLogin user=new UserLogin();
-	
-	TransactionDAO obj=new ImplementTransactionDetails();
-
-	
-	return true;*/
-	return false;
-	
-	
-
-
+	return result2;
 }
-
 }
