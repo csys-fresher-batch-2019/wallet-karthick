@@ -31,5 +31,13 @@ public class LoginService {
 	public String forgetPassword(long mobileNumber, int pinNumber) throws DBException {
 		return login.forgetPassword(mobileNumber, pinNumber);
 	}
+	
+	public int balanceCheck(long mobileNumber) throws DBException{
+		return login.balanceCheck(mobileNumber);
+	}
+	
+	public String pinUpdate(long mobileNumber, int pinNumber) throws DBException{
+		return login.pinUpdate(mobileNumber, pinNumber);
+	}
 
 }

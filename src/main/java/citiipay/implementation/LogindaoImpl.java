@@ -3,6 +3,7 @@ package citiipay.implementation;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Types;
 
 import citiipay.connectionutil.Connect;
@@ -95,6 +96,48 @@ public class LogindaoImpl implements LoginDAO {
 	public String forgetPassword(long mobileNumber, int pinNumber) throws DBException {
 		String sql = "update login set upi_passwd=? where mobile_no=?";
 		try (Connection conn = Connect.connect(); PreparedStatement stmt = conn.prepareStatement(sql);) {
+			stmt.setInt(1, pinNumber);
+			stmt.setLong(2, mobileNumber);
+			String result = "";
+			int rows = stmt.executeUpdate();
+			if (rows == 0) {
+				result = ErrorMessages.PIN_NOT_UPDATED;
+			} else {
+				result = InfoMessages.PIN_UPDATED;
+			}
+			return result;
+
+		} catch (Exception e) {
+			throw new DBException(ErrorMessages.CONNECTION_FAILURE);
+		}
+	}
+	
+	public int balanceCheck(long mobileNumber) throws DBException {
+
+		String balanceSql = "select kyc_wallet from kyc where mobile_no=?";
+		try (Connection conn = Connect.connect();
+				PreparedStatement stmt2 = conn.prepareStatement(balanceSql);) {
+			stmt2.setLong(1, mobileNumber);
+			int result =0;
+				try (ResultSet rs2 = stmt2.executeQuery();) {
+					while (rs2.next()) {
+						result=rs2.getInt("kyc_wallet");
+					}
+				} catch (Exception e) {
+					throw new DBException(ErrorMessages.NO_DATA_FOUND);
+				}
+				return result;
+			}
+			catch (Exception e) {
+			throw new DBException(ErrorMessages.CONNECTION_FAILURE);
+		}
+	}
+	
+	
+	public String pinUpdate(long mobileNumber, int pinNumber) throws DBException {
+		String sql = "update login set upi_passwd=? where mobile_no=?";
+		try (Connection conn = Connect.connect(); 
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
 			stmt.setInt(1, pinNumber);
 			stmt.setLong(2, mobileNumber);
 			String result = "";

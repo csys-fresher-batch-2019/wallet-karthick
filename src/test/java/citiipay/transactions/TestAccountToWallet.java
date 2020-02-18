@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import citiipay.implementation.TransactiondaoImpl;
 import citiipay.messages.DBException;
-import citiipay.models.CashBack;
 
 public class TestAccountToWallet {
 
@@ -20,10 +19,8 @@ public class TestAccountToWallet {
 		System.out.println("Enter any comments:");
 		String comments = sc.next();
 		TransactiondaoImpl obj1=new TransactiondaoImpl();
-		CashBack object=new CashBack();
-		object=obj1.accountToWallet(mobileNo, accountNo, amount, comments);
-		System.out.println(object.getResult());
-		System.out.println("Cashback of "+object.getCashbackAmount()+" is added");
+		String result=obj1.accountToWallet(mobileNo, accountNo, amount, comments);
+		System.out.println(result);
 			
 	}
 

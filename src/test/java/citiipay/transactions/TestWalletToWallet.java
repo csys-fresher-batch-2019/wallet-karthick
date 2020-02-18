@@ -5,6 +5,7 @@ import java.util.Scanner;
 import citiipay.implementation.LogindaoImpl;
 import citiipay.implementation.TransactiondaoImpl;
 import citiipay.messages.DBException;
+import citiipay.models.CashBack;
 
 public class TestWalletToWallet {
 
@@ -24,8 +25,10 @@ public class TestWalletToWallet {
 				System.out.println("Enter any comments:");
 				String comments = sc.next();
 				TransactiondaoImpl obj1=new TransactiondaoImpl();
-				String result=obj1.walletTransaction(mobileNumber1, mobileNumber2,amount,comments);
-				System.out.println(result);
+				CashBack object=new CashBack();
+				object=obj1.walletTransaction(mobileNumber1, mobileNumber2, amount, comments);
+				System.out.println(object.getResult());
+				System.out.println("Cashback of "+object.getCashbackAmount()+" is added");
 			}
 			else {
 				System.out.println("Receiver Account doesnot exists");

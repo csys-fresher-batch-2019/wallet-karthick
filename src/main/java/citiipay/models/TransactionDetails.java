@@ -11,6 +11,15 @@ public class TransactionDetails {
 	private Timestamp transactionDate;
 	private float transactionAmount;
 	private String transactionStatus;
+	private String comments;
+	
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
 
 	public long getSenderNumber() {
 		return senderNumber;
@@ -71,7 +80,9 @@ public class TransactionDetails {
 	@Override
 	public String toString() {
 		return "TransactionDetails [senderNumber=" + senderNumber + ", receiverNumber=" + receiverNumber + ", category="
-				+ category + ", balance=" + balance + ", transactionDate=" + transactionDate + ", transactionAmount="
-				+ transactionAmount + ", transactionStatus=" + transactionStatus + "]";
+				+ category + ", transactionDate=" + transactionDate + ", transactionAmount="
+				+ transactionAmount + ", transactionStatus=" + transactionStatus + ", comments=" + comments + "]";
 	}
+
+	
 }

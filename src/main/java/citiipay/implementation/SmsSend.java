@@ -12,7 +12,7 @@ import java.util.Random;
 public class SmsSend {
 
 	public static void msgPersonal(long mobileNo) {
-		String authkey = "243477AVOV0jN2Q5bc967d9";
+		String authkey = "318151As596OCYE5e45440cP1";
 		String mobiles = Long.toString(mobileNo);
 		String senderId = "WALLET";
 		String country = "91";
@@ -44,7 +44,7 @@ public class SmsSend {
 	}
 
 	public static void msgBussiness(long mobileNo) {
-		String authkey = "243477AVOV0jN2Q5bc967d9";
+		String authkey = "318151As596OCYE5e45440cP1";
 		String mobiles = Long.toString(mobileNo);
 		String senderId = "WALLET";
 		String country = "91";
@@ -77,7 +77,7 @@ public class SmsSend {
 	}
 
 	public static int msgForegetPassword(long mobileNo) {
-		String authkey = "243477AVOV0jN2Q5bc967d9";
+		String authkey = "318151As596OCYE5e45440cP1";
 		String mobiles = Long.toString(mobileNo);
 		String senderId = "WALLET";
 		String country = "91";
@@ -112,7 +112,7 @@ public class SmsSend {
 	}
 
 	public static void msgSender(long senderMobileNo, long receiverMobileNo, float amount) {
-		String authkey = "243477AVOV0jN2Q5bc967d9";
+		String authkey = "318151As596OCYE5e45440cP1";
 		String mobiles = Long.toString(senderMobileNo);
 		String mobiles1 = Long.toString(receiverMobileNo);
 		String senderId = "WALLET";
@@ -149,7 +149,7 @@ public class SmsSend {
 	}
 
 	public static void msgReceiver(long senderMobileNo, long receiverMobileNo, float amount) {
-		String authkey = "30626d727543373130303130";
+		String authkey = "318151As596OCYE5e45440cP1";
 		String mobiles = Long.toString(receiverMobileNo);
 		String mobiles1 = Long.toString(senderMobileNo);
 		String senderId = "WALLET";
@@ -186,7 +186,7 @@ public class SmsSend {
 	}
 
 	public static void msgMerchantPay(String merchantId, long receiverMobileNo, float amount) {
-		String authkey = "30626d727543373130303130";
+		String authkey = "318151As596OCYE5e45440cP1";
 		String mobiles = Long.toString(receiverMobileNo);
 		String mobiles1 = merchantId;
 		String senderId = "WALLET";
